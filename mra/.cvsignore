@@ -1,0 +1,8 @@
+MANIFEST.MF
+distrib
+bin
+MTPs-Container*
+APDescription.txt
+MTPs-Main-Container.txt
+*.mid
+output

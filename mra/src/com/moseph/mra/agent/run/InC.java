@@ -1,0 +1,52 @@
+package com.moseph.mra.agent.run;
+import java.io.BufferedReader;
+import static com.moseph.mra.agent.AgentUtilities.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.Vector;
+
+import com.moseph.mra.agent.AgentUtilities;
+
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
+
+import jade.Boot;
+import jade.core.Profile;
+import jade.core.ProfileImpl;
+import jade.core.Runtime;
+import jade.wrapper.AgentController;
+import jade.wrapper.ContainerController;
+import jade.wrapper.StaleProxyException;
+import static com.moseph.mra.MRAConstants.*;
+import static java.lang.Math.*;
+
+public class InC extends AgentRunner
+{
+	static int NUM_AGENTS = 12;
+	
+	public static void main( String[] args ) throws Exception
+	{
+			String filename = "examples/InC.mra";
+			if( args.length > 0 ) filename = args[0];
+			if( args.length > 1) NUM_AGENTS = Integer.parseInt( args[1] );
+			
+			List<String> agents = getStartingAgentDefinitions( filename,  true, false );
+			for( int i = 0; i < NUM_AGENTS; i++ )
+				agents.add( getRandomAgent( filename ) );
+				
+			runAgents(agents);
+	}
+	
+	static String getRandomAgent( String filename )
+	{
+		String agentArgs[] = { 
+				"Filename=" + filename,
+				"Path=" + "/main/s1",
+				"Instrument=" + instrumentNames[ (int)( Math.random() * instrumentNames.length )] ,
+				"x=" + ( ( random() * 2 - 1 ) * ROOM_X ),
+				"y=" + ( ( random() * 2 - 1 ) * ROOM_Y )
+				};
+		return attsToString( "player" + getAgentNumber(), "com.moseph.mra.agent.ScoreAgent", agentArgs );
+}
+
+}

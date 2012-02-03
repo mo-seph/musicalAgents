@@ -1,0 +1,177 @@
+<project name="JMPC" basedir="." default="compile">
+	<description>
+		Some useful UI tools
+	</description>
+	<property name="srcDistribName" value="mra-0.1"/>
+	<property name="execDistribName" value="mra-0.1-bin"/>
+	<property name="projectname" value="mra"/>
+	<property name="name" value="com.moseph.mra.visualise.MRAVisualiser"/>
+	<property name="source-version" value="1.5"/>
+	<property name="target-version" value="1.5"/>
+
+
+	<property environment="env"/>
+	<property name="build" location="bin"/>
+	<property name="junit" location="${user.home}/java/junit.jar"/>
+	<property name="src" location="./src"/>
+	<property name="distrib" location="distrib"/>
+	<property name="java-libs" value="${env.JAVA_LIBS}"/>
+	<property name="tests" location="src/com/moseph/mra/test"/>
+	<property name="testclasses" location="bin/com/moseph/mra/test"/>
+	<property name="readme" location="doc/README"/>
+	<property name="docs" location="doc"/>
+	<property name="manifest" location="MANIFEST.MF"/>
+	<property name="binDistribDir" location="distrib/bin"/>
+	<property name="srcDistribDir" location="distrib/src"/>
+	<property name="target-version" value="1.5"/>
+	<property name="source-version" value="1.5"/>
+	<property name="webbase" value="s0239182@inf:~/web/java"/>
+
+	<path id="project_classpath">
+		<pathelement location="${build}"/>
+		<pathelement location="${junit}"/>
+	</path>
+
+	<fileset dir="${java-libs}" id="global-libraries">
+		<include name="JMPDComm.jar"/>
+	</fileset>
+
+	<patternset id="src-files">
+		<include name="./src/**/*.java"/>
+	</patternset>
+
+	<patternset id="test-files">
+		<include name="*java"/>
+	</patternset>
+
+	<fileset id="test-classes" dir="${testclasses}" includes='**/*Test.class'/>
+
+	<patternset id="jar-files">
+		<include name="**/*"/>
+	</patternset>
+
+	<patternset id="support-files">
+	</patternset>
+
+	<fileset dir="." id="src-distrib-files">
+		<include name="src/**/*java"/>
+		<include name="${tests}/*java"/>
+	</fileset>
+
+	<fileset dir="." id="bin-distrib-files">
+		<include name="distrib/*jar"/>
+	</fileset>
+
+	<fileset dir="${java-libs}" id="global-libraries">
+		<include name="no_file_by_this_name"/>
+	</fileset>
+
+	<fileset dir="." id="common-distrib-files">
+		<include name="doc/*"/>
+	</fileset>
+
+	<target name="distrib" depends="compile" description="Create distributables">
+		<delete dir="${distrib}"/>
+		<mkdir dir="${distrib}"/>
+		<antcall target="jar"/>
+		<antcall target="exec"/>
+		<antcall target="src"/>
+		<copy file="${distrib}/${projectname}.jar" todir="${java-libs}"/>
+	</target>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+    <mkdir dir="${testclasses}"/>
+  </target>
+
+	<target name="manifest" description="creates the manifest">
+		<manifest file="${manifest}">
+			<attribute name="Built-By" value="${user.name}"/>
+			<attribute name="Main-Class" value="${fullprojectname}.${name}"/>
+		</manifest>
+	</target>
+
+	<target name="jar" depends="manifest" description="Create a jar">
+		<jar basedir="${build}" destfile="${distrib}/${projectname}.jar" manifest="${manifest}">
+			<patternset refid="jar-files"/>
+		</jar>
+	</target>
+
+
+	<target name="compile" depends="init" 
+		description="compile the source">
+		<javac srcdir="." destdir="${build}"  debug="true" debuglevel="lines,vars,source" classpathref="project_classpath" target="${target-version}" source="${source-version}">
+			<compilerarg line="-Xlint:deprecation"/>
+			<patternset includes="src/**/*.java"/>
+		</javac>
+	</target>
+
+	<target name="compile-tests" depends="init" 
+		description="compile the tests">
+		<javac srcdir="." destdir="${testclasses}"  debug="true" debuglevel="lines,vars,source" classpathref="project_classpath">
+			<compilerarg line="-Xlint:deprecation"/>
+			<patternset includes="src/**/test/*.java"/>
+		</javac>
+	</target>
+
+	<target name="src" description="Creates a source distrib">
+		<delete dir="${srcDistribDir}"/>
+		<mkdir dir="${srcDistribDir}"/>
+		<mkdir dir="${srcDistribDir}/tests"/>
+		<copy todir="${srcDistribDir}" flatten="false">
+			<fileset dir="${src}"/>
+				
+			<fileset refid="common-distrib-files"/>
+			<!--<fileset refid="global-libraries"/>-->
+		</copy>
+		<copy todir="${srcDistribDir}/tests" flatten="true">
+			<fileset dir="${tests}">
+				<patternset refid="test-files"/>
+			</fileset>
+		</copy>
+		<tar destfile="${distrib}/${srcDistribName}.tgz" compression="gzip">
+			<tarfileset dir="${srcDistribDir}" prefix="${srcDistribName}" preserveLeadingSlashes="false"/>
+		</tar>
+	</target>
+
+	<target name="exec" description="Creates a binary distrib">
+		<delete dir="${binDistribDir}"/>
+		<mkdir dir="${binDistribDir}"/>
+		<copy todir="${binDistribDir}" flatten="true">
+			<fileset refid="bin-distrib-files"/>
+			<fileset refid="common-distrib-files"/>
+			<fileset refid="global-libraries"/>
+		</copy>
+		<tar destfile="${distrib}/${execDistribName}.tgz" compression="gzip">
+			<tarfileset dir="${binDistribDir}" prefix="${execDistribName}" preserveLeadingSlashes="false"/>
+		</tar>
+	</target>
+
+	<target name="webdistrib" description="Copies binary description to a website" depends="exec">
+		<exec executable="scp">
+			<arg line="-r ${binDistribDir} ${webbase}/${webdir}"/>
+		</exec>
+	</target>
+
+	<target name="run" description="Run one of the classes">
+		<java classname="${name}" fork="true"  classpathref="project_classpath">
+		</java>
+	</target>
+
+	<target name="test" depends="init,compile-tests" description='Run unit tests in non-graphical mode'>
+		 <junit printsummary='true' haltonfailure='true'>
+			 <formatter type='brief' usefile='false'/>
+			 <classpath>
+			 	<path refid="project_classpath"/>
+			 </classpath>
+			 <batchtest>
+				 <fileset refid="test-classes"/>
+			 </batchtest>
+		 </junit>
+	 </target>
+
+
+</project>

@@ -1,0 +1,174 @@
+; Thu Jan 05 21:07:34 GMT 2006
+; 
+;+ (version "2.1.1")
+;+ (build "Build 239")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot Attributes
+		(type SYMBOL)
+;+		(allowed-parents Attribute)
+		(create-accessor read-write))
+	(single-slot value
+		(type SYMBOL)
+;+		(allowed-parents %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot action
+		(type SYMBOL)
+;+		(allowed-parents Action)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot decision
+		(type SYMBOL)
+;+		(allowed-parents Decision)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot length
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot events
+		(type SYMBOL)
+;+		(allowed-parents TemporalEvent)
+		(create-accessor read-write))
+	(single-slot expression
+		(type SYMBOL)
+;+		(allowed-parents ExpressionTerm)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Unit
+	(is-a Concept)
+	(role concrete)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Attributes
+		(type SYMBOL)
+;+		(allowed-parents Attribute)
+		(create-accessor read-write)))
+
+(defclass Channel
+	(is-a Unit)
+	(role concrete)
+	(single-slot length
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot events
+		(type SYMBOL)
+;+		(allowed-parents TemporalEvent)
+		(create-accessor read-write)))
+
+(defclass SpanContainer
+	(is-a Channel)
+	(role concrete))
+
+(defclass Fragment
+	(is-a SpanContainer)
+	(role concrete))
+
+(defclass Action
+	(is-a Unit)
+	(role concrete))
+
+(defclass Behaviour
+	(is-a Unit)
+	(role concrete)
+	(single-slot action
+		(type SYMBOL)
+;+		(allowed-parents Action)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot decision
+		(type SYMBOL)
+;+		(allowed-parents Decision)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot expression
+		(type SYMBOL)
+;+		(allowed-parents ExpressionTerm)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Decision
+	(is-a Unit)
+	(role concrete)
+	(single-slot expression
+		(type SYMBOL)
+;+		(allowed-parents ExpressionTerm)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Directive
+	(is-a Unit)
+	(role concrete))
+
+(defclass Score
+	(is-a Unit)
+	(role concrete))
+
+(defclass Section
+	(is-a Unit)
+	(role concrete))
+
+(defclass Piece
+	(is-a Section)
+	(role concrete))
+
+(defclass TemporalEvent
+	(is-a Unit)
+	(role concrete))
+
+(defclass Span
+	(is-a TemporalEvent)
+	(role concrete))
+
+(defclass Note
+	(is-a Span)
+	(role concrete))
+
+(defclass Gracenote
+	(is-a Note)
+	(role abstract))
+
+(defclass Instrument
+	(is-a Concept)
+	(role concrete)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Attribute
+	(is-a Concept)
+	(role concrete)
+	(single-slot value
+		(type SYMBOL)
+;+		(allowed-parents %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Musician
+	(is-a Concept)
+	(role concrete)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ExpressionTerm
+	(is-a Concept)
+	(role abstract))
+
+(defclass Function
+	(is-a ExpressionTerm)
+	(role concrete))

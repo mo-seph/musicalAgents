@@ -1,0 +1,17 @@
+( Section
+	Rhythm:	Rockabilly
+	( Channel Notes
+		( Note: 1, a3, asdf )
+		( Note: c4, a3, asdr )
+		/*asdlfjk asdflj39 ((((*/
+		// ))(((
+	)
+	( Channel Chords
+		( ChordSpan: Cminor, 4.0, 6.0 )
+	)
+	( AllowedAction
+		Action:		addOffset
+		Decision:	(and (not kevin) (not ( and koml spank ) ) )
+		/* Borksdflkj asdflkj 234980 2309 sweroj (as ))*/
+	) 
+)

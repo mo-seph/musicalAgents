@@ -1,0 +1,8 @@
+( 	Piece	RecordTest
+	BPM:	120
+	( Section Main
+		( Section aa
+			Length: 200
+		)
+	)
+)

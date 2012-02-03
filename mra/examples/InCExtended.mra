@@ -1,0 +1,120 @@
+( Piece						InC	
+	( Section				baseSection
+		KeySignature:		C
+		//RepeatUntil:		(and decide( longEnough ) decide( followLocus )	)
+		
+		( ActiveBehaviour		offsets )
+		( ActiveBehaviour		breaks )
+		( ActiveBehaviour	followDynamics )
+		( ActiveBehaviour	varyDynamicRange )
+		( Channel Monkeys
+			( Monk: 0, big, hairy )
+		)
+	)
+	
+	
+	( Section				s1
+		Derives:			baseSection
+		NextSection:		2
+		( Channel Notes
+			( Gracenote: C, 1 )
+			( Note: E, 1, 1 )
+			( Gracenote: C, 2 )
+			( Note: E, 2, 1 )
+			( Gracenote: C, 3 )
+			( Note: E, 3, 1 )
+		)
+	)
+	
+	( Section				s53a
+		( Channel Notes
+			( Note: Bb, 1, 0.25 )
+			( Note: G, 1.25, 0.25 )
+		)
+		Derives:			baseSection
+		RepeatUntil:		everyoneArrived
+	)
+	
+	( Section				s53b
+		( Channel Notes
+			( Note: Bb, 1, 0.25 )
+			( Note: G, 1.25, 0.25 )
+		)
+		( ActiveBehaviour	groupCrescendoDiminuendo )
+		RepeatUntil:		endPiece	
+	)
+	
+	( Section				breakSection
+		Behaviour:			tacet
+		Action:				rejoin
+		NextSection:		curSection
+	)
+	
+	( Decision				longEnough
+							greater( numRepeats, 10 )
+	)
+	
+	( Decision				followLocus
+							greater( normal( minus( currentSection, currentLocus ), tightness ), 0.0 )
+	)
+	
+	( Decision				endPiece
+							greater( normal( 0.0, leavingTightness ), 0.0 )
+	)
+	
+	( Action				takeBreak
+		JumpTo:				breakSection
+	)
+	
+	( Action				addOffset
+		InsertSpaceAtEnd:	0.5 //beats
+	)
+	
+	( Decision				wantOffset
+							( or 
+								(and almostUnison wantUnison )
+								(and unison wantNotUniosn )
+								( feelLikeIt )
+							)
+	)
+	
+	( Decision				wantBreak
+							( or 	beenPlayingALongTime
+									textureTooDense
+									textureTooConstant )
+	)
+
+	( Behaviour				groupCrescendoDiminuendo
+							( true )
+		Activate:			groupCrescendo 
+		Activate:			groupDiminuendo
+		Activate:			groupMax
+		Activate:			groupMin
+	)
+	
+	( Behaviour				groupCrescendo 
+							moreThan( dynamicCurve, 0.0 )
+		Dynamics:			set( dynamic, add( averageDynamic, smallNoisyIncrement() ) )
+	)
+	
+	( Behaviour				groupDiminuendo 
+							lessThan( dynamicCurve, 0.0 )
+		Dynamics:			set( dynamic, add( averageDynamic, smallNoisyIncrement ) )
+		/*
+							if( increasing and maximum ) increasing = false
+							if( decreasing and minimum ) increasing = true */
+	)
+	
+	( Behaviour				followDynamics 
+							( true )
+		Dynamics:			set( dynamic,  averageDynamic)
+	)
+	
+	( Behaviour				varyDynamicRange 
+							dynamicsTooConstant
+		Dynamics:			set( dynamicContour, choose( crescendo, diminuendo ) )
+	)
+	( Behaviour				offsets wantOffset addOffset )
+	( Behaviour				breaks wantBreak takeBreak )
+	
+)	

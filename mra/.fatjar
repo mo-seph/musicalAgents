@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed Mar 14 11:15:53 GMT 2007
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=experiment_runner.jar
+manifest.mergeall=true
+manifest.mainclass=com.moseph.mra.agent.run.ExperimentRunner
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

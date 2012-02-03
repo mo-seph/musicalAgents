@@ -1,0 +1,7 @@
+#Fri Jun 09 12:41:40 BST 2006
+eclipse.preferences.version=1
+internal.default.compliance=default
+org.eclipse.jdt.ui.ignorelowercasenames=true
+org.eclipse.jdt.ui.importorder=java.lang;java;javax;org;com;
+org.eclipse.jdt.ui.ondemandthreshold=2
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8"?><templates/>

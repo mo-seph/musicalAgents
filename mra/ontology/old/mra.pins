@@ -1,0 +1,19 @@
+; Thu Jan 05 21:07:34 GMT 2006
+; 
+;+ (version "2.1.1")
+;+ (build "Build 239")
+
+([ExpressionTerm] of %3AJADE-CLASS
+	(%3AJADE-IGNORE FALSE))
+
+([Function] of %3AJADE-CLASS
+	(%3AJADE-IGNORE FALSE))
+
+([Musician] of %3AJADE-CLASS
+	(%3AJADE-IGNORE FALSE))
+
+([project+annotation] of %3APROJECT-ANNOTATION
+	(%3ALOCATION "/home/s0239182/workspace/mra/src")
+	(%3AONTOLOGYNAME "MRA")
+	(%3APACKAGE "com.moseph.mra.onto")
+	(%3ASUPPORT "j2se"))

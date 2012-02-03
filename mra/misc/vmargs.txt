@@ -1,0 +1,6 @@
+-Xmx512M
+-Xms512M
+-XX:+UseParallelGC
+-XX:MaxGCPauseMillis=1
+-XX:+UseAdaptiveSizePolicy
+-XX:GCTimeRatio=9999

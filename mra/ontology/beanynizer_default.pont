@@ -1,0 +1,146 @@
+; Mon Feb 07 12:53:52 GMT+01:00 2005
+; 
+;+ (version "2.1.1")
+;+ (build "Build 239")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot BEANYNIZER-GETTERNAME
+;+		(comment "Name of the getter method if different from get<name> (or is<name> for boolean).")
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(associated-facet BEANYNIZER-GETTERNAME-FACET)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-NAME
+;+		(comment "The name to be used for generation (if different from ontology class/slot name).")
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(associated-facet BEANYNIZER-NAME-FACET)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-SETTERNAME
+;+		(comment "Name of the setter method if different from set<name>.")
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(associated-facet BEANYNIZER-SETTERNAME-FACET)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-SUPERCLASS
+;+		(comment "The superclass to use for the generated source (if any).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-FILES
+;+		(comment "Select the kind of Java file(s) to be generated.")
+		(type SYMBOL)
+		(allowed-values External Fixed Editable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-TYPE
+;+		(comment "Java type to use for code generation, when default does not apply.")
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(associated-facet BEANYNIZER-TYPE-FACET)
+		(create-accessor read-write))
+	(multislot BEANYNIZER-INTERFACES
+;+		(comment "Additional interfaces that the generated class should implement.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-PACKAGE
+;+		(comment "The package used for generation (when different from ontology package).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-SCHEMA
+;+		(comment "Use default or see jade.content.schema for details.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-ISINTERFACE
+;+		(comment "Flag indicating that the Java class of this element is an interface.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass BEANYNIZER-CLASS "Meta-class for all classes considered in the generation process."
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(single-slot BEANYNIZER-FILES
+;+		(comment "Select the kind of Java file(s) to be generated.")
+		(type SYMBOL)
+		(allowed-values External Fixed Editable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-PACKAGE
+;+		(comment "The package used for generation (when different from ontology package).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot BEANYNIZER-INTERFACES
+;+		(comment "Additional interfaces that the generated class should implement.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-NAME
+;+		(comment "The name to be used for generation (if different from ontology class/slot name).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-SCHEMA
+;+		(comment "Use default or see jade.content.schema for details.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-SUPERCLASS
+;+		(comment "The superclass to use for the generated source (if any).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-ISINTERFACE
+;+		(comment "Flag indicating that the Java class of this element is an interface.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass BEANYNIZER-SLOT
+	(is-a %3ASTANDARD-SLOT)
+	(role concrete)
+	(single-slot BEANYNIZER-NAME
+;+		(comment "The name to be used for generation (if different from ontology class/slot name).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-TYPE
+;+		(comment "Java type to use for code generation, when default does not apply.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-GETTERNAME
+;+		(comment "Name of the getter method if different from get<name> (or is<name> for boolean).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot BEANYNIZER-SETTERNAME
+;+		(comment "Name of the setter method if different from set<name>.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Concept "Base class for all concepts (entities)."
+	(is-a USER)
+	(role abstract))
+
+(defclass AgentAction "Base class for all agent actions\n(e.g. sent in request messages)."
+	(is-a Concept)
+	(role abstract))
+
+(defclass agent-identifier "Agent identifier used for addressing agents."
+	(is-a Concept)
+	(role concrete))
+
+(defclass Predicate "Base class for all predicates (propositions)."
+	(is-a USER)
+	(role abstract))

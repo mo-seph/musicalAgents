@@ -1,0 +1,20 @@
+(
+	(action 
+		(agent-identifier :name a1@iceflow.inf.ed.ac.uk:1099/JADE)
+		(SELL 
+			:buyer (agent-identifier :name a1@iceflow.inf.ed.ac.uk:1099/JADE) 
+			:item 
+			(CD 
+				:serialID 123456 
+				:title Synchronicity 
+				:tracks 
+				(sequence 
+					(TRACK :name Synchronicity) 
+					(TRACK :name \"Every breath you take\") 
+					(TRACK :name \"King of pain\" :duration 240)
+				)
+			) 
+			:creditcard (CREDITCARD :type VISA :number 3378892003 :expirationdate 20060126T154656683Z)
+		)
+	)
+)

@@ -1,0 +1,712 @@
+( Piece						InC	
+	BPM:	120
+	( Section	main
+		RepeatUntil:			followLocus
+		( ActiveBehaviour		offsets )
+		( ActiveBehaviour		breaks )
+		( ActiveBehaviour	followDynamics )
+		( ActiveBehaviour	varyDynamicRange )
+		
+		( Section				s0
+			Derives:			baseSection
+			Length:				0.5
+		)
+		
+		( Section				s1
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Gracenote: C, 0)
+				( Note: E, 0.05, 1.0 )
+				( Gracenote: C, 1)
+				( Note: E, 1.05, 1.0 )
+				( Gracenote: C, 2)
+				( Note: E, 2.05, 0.95)
+			)
+		)
+		
+		( Section				s2
+			Derives:			baseSection
+			Length:				2
+			( Channel Notes
+				( Gracenote: C, 0)
+				( Note: E, 0, 0.4 )
+				( Note: F, 0.5, 0.4 )
+				( Note: E, 1, 0.7)
+			)
+		)
+		( Section				s3
+			Derives:			baseSection
+			Length:				2
+			( Channel Notes
+				( Note: E, 0.5, 0.5 )
+				( Note: F, 1, 0.5 )
+				( Note: E, 1.5, 0.5 )
+			)
+		)
+		( Section				s4
+			Derives:			baseSection
+			Length:				2
+			( Channel Notes
+				( Note: E, 0.5, 0.5 )
+				( Note: F, 1, 0.5 )
+				( Note: G, 1.5, 0.5 )
+			)
+		)
+		( Section				s5
+			Derives:			baseSection
+			Length:				2
+			( Channel Notes
+				( Note: E, 0, 0.5 )
+				( Note: F, 0.5, 0.5 )
+				( Note: G, 1, 0.5 )
+			)
+		)
+		( Section				s6
+			Derives:			baseSection
+			Length:				8
+			( Channel Notes
+				( Note: C4, 0, 4 )
+				( Note: C4, 4, 4 )
+			)
+		)
+		
+		( Section				s7
+			Derives:			baseSection
+			Length:				9
+			( Channel Notes
+				( Note: C, 3.5, 0.2)
+				( Note: C, 3.75, 0.2)
+				( Note: C, 4, 0.4)
+			)
+		)
+		
+		( Section				s8
+			Derives:			baseSection
+			Length:				14
+			( Channel Notes
+				( Note: G, 0, 6 )
+				( Note: F, 6, 4 )
+				( Note: F, 10, 4 )
+			)
+		)
+		
+		
+		( Section				s9
+			Derives:			baseSection
+			Length:				4
+			( Channel Notes
+				( Note: B, 0, 0.25 )
+				( Note: G, 0.25, 0.2 )
+			)
+		)
+		
+		( Section				s10
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: B, 0, 0.25 )
+				( Note: G, 0.25, 0.2 )
+			)
+		)
+		
+		( Section				s11
+			Derives:			baseSection
+			Length:				1.5
+			( Channel Notes
+				( Note: F, 0, 0.23 )
+				( Note: G, 0.25, 0.23 )
+				( Note: B, 0.5, 0.23 )
+				( Note: G, 0.75, 0.23 )
+				( Note: B, 1.0, 0.23 )
+				( Note: G, 1.25, 0.23 )
+			)
+		)
+		
+		( Section				s12
+			Derives:			baseSection
+			Length:				6
+			( Channel Notes
+				( Note: F, 0, 0.45)
+				( Note: G, 0.5, 0.45)
+				( Note: B, 1, 4 )
+				( Note: C4, 5, 1)
+			)
+		)
+		
+		( Section				s13
+			Derives:			baseSection
+			Length:				6
+			( Channel Notes
+				( Note: B, 0, 0.22 )
+				( Note: G, 0.25, 0.70 )
+				( Note: G, 1, 0.25 )
+				( Note: F, 1.25, 0.25 )
+				( Note: G, 1.5, 0.5 )
+				( Note: G, 2.75, 3.25 )
+			)
+		)
+		
+		( Section				s14
+			Derives:			baseSection
+			Length:				16
+			( Channel Notes
+				( Note: C4, 0, 4 )
+				( Note: B, 4, 4 )
+				( Note: G, 8, 4 )
+				( Note: F#, 12, 4 )
+			)
+		)
+		
+		( Section				s15
+			Derives:			baseSection
+			Length:				4
+			( Channel Notes
+				( Note: G, 0, 0.2)
+			)
+		)
+		
+		( Section				s16
+			Derives:			baseSection
+			Length:				1
+			( Channel Notes
+				( Note: G, 0, 0.2 )
+				( Note: B, 0.25, 0.2 )
+				( Note: C4, 0.5, 0.2 )
+				( Note: B, 0.75, 0.2 )
+			)
+		)
+		
+		( Section				s17
+			Derives:			baseSection
+			Length:				1.5
+			( Channel Notes
+				( Note: B, 0, 0.2 )
+				( Note: C4, 0.25, 0.2 )
+				( Note: B, 0.5, 0.2 )
+				( Note: C4, 0.75, 0.2 )
+				( Note: B, 1, 0.2 )
+			)
+		)
+		
+		( Section				s18
+			Derives:			baseSection
+			Length:				2
+			( Channel Notes
+				( Note: E, 0, 0.2 )
+				( Note: F#, 0.25, 0.2 )
+				( Note: E, 0.5, 0.2 )
+				( Note: F#, 0.75, 0.2 )
+				( Note: E, 1, 0.7 )
+				( Note: E, 1.75, 0.2 )
+			)
+		)
+		
+		( Section				s19
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: G4, 1.5, 1.4 )
+			)
+		)
+		
+		( Section				s20
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: E, 0, 0.2 )
+				( Note: F#, 0.25, 0.2 )
+				( Note: E, 0.5, 0.2 )
+				( Note: F#, 0.75, 0.2 )
+				( Note: G2, 1, 0.2 )
+				( Note: E, 1.75, 0.2 )
+				( Note: F#, 2.0, 0.2 )
+				( Note: E, 2.25, 0.2 )
+				( Note: F#, 2.5, 0.2 )
+				( Note: E, 2.75, 0.2 )
+			)
+		)
+		
+		( Section				s21
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: F#, 0, 3 )
+			)
+		)
+		
+		( Section				s22
+			Derives:			baseSection
+			Length:				12.5
+			( Channel Notes
+				( Note: E, 0, 1.4 )
+				( Note: E, 1.5, 1.4 )
+				( Note: E, 3, 1.4 )
+				( Note: E, 4.5, 1.4 )
+				( Note: E, 6, 1.4 )
+				( Note: F#, 7.5, 1.4 )
+				( Note: G, 9, 1.4 )
+				( Note: A, 10.5, 1.4 )
+				( Note: B, 12, 0.4 )
+			)
+		)
+		
+		( Section				s23
+			Derives:			baseSection
+			Length:				12
+			( Channel Notes
+				( Note: E, 0, 0.4 )
+				( Note: F#, 0.5, 1.4 )
+				( Note: F#, 2, 1.4 )
+				( Note: F#, 3.5, 1.4 )
+				( Note: F#, 5, 1.4 )
+				( Note: F#, 6.5, 1.4 )
+				( Note: G, 8, 1.4 )
+				( Note: A, 9.5, 1.4 )
+				( Note: B, 11, 0.8 )
+			)
+		)
+		
+		( Section				s24
+			Derives:			baseSection
+			Length:				10.5
+			( Channel Notes
+				( Note: E, 0, 0.4 )
+				( Note: F#, 0.5, 0.4 )
+				( Note: G, 1, 1.4 )
+				( Note: G, 2.5, 1.4 )
+				( Note: G, 4, 1.4 )
+				( Note: G, 5.5, 1.4 )
+				( Note: G, 7, 1.4 )
+				( Note: A, 8.5, 1.4 )
+				( Note: B, 10, 0.4 )
+			)
+		)
+		
+		( Section				s25
+			Derives:			baseSection
+			Length:				10.5
+			( Channel Notes
+				( Note: E, 0, 0.4 )
+				( Note: F#, 0.5, 0.4 )
+				( Note: G, 1, 0.4 )
+				( Note: A, 1.5, 1.4 )
+				( Note: A, 3, 1.4 )
+				( Note: A, 4.5, 1.4 )
+				( Note: A, 6, 1.4 )
+				( Note: A, 7.5, 1.4 )
+				( Note: B, 9, 1.4 )
+			)
+		)
+		
+		( Section				s26
+			Derives:			baseSection
+			Length:				9.5
+			( Channel Notes
+				( Note: E, 0, 0.4 )
+				( Note: F#, 0.5, 0.4 )
+				( Note: G, 1, 0.4 )
+				( Note: A, 1.5, 0.4 )
+				( Note: B, 2, 1.4 )
+				( Note: B, 3.5, 1.4 )
+				( Note: B, 5, 1.4 )
+				( Note: B, 6.5, 1.4 )
+				( Note: B, 8, 1.4 )
+			)
+		)
+		
+		( Section				s27
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: E, 0, 0.23)
+				( Note: F#, 0.25, 0.23)
+				( Note: E, 0.5, 0.23)
+				( Note: F#, 0.75, 0.23)
+				( Note: G, 1, 0.4 )
+				( Note: E, 1.5, 0.23)
+				( Note: G, 1.75, 0.23)
+				( Note: F#, 2, 0.23)
+				( Note: E, 2.25, 0.23)
+				( Note: F#, 2.5, 0.23)
+				( Note: E, 2.75, 0.23)
+			)
+		)
+		
+		( Section				s28
+			Derives:			baseSection
+			Length:				2
+			( Channel Notes
+				( Note: E, 0, 0.23)
+				( Note: F#, 0.25, 0.23)
+				( Note: E, 0.5, 0.23)
+				( Note: F#, 0.75, 0.23)
+				( Note: E, 1, 0.70 )
+				( Note: E, 1.75, 0.23)
+			)
+		)
+		
+		( Section				s29
+			Derives:			baseSection
+			Length:				9
+			( Channel Notes
+				( Note: E, 0, 3 )
+				( Note: G, 3, 3 )
+				( Note: C4, 6, 3 )
+			)
+		)
+		
+		( Section				s30
+			Derives:			baseSection
+			Length:				6
+			( Channel Notes
+				( Note: C4, 0, 6 )
+			)
+		)
+		
+		( Section				s31
+			Derives:			baseSection
+			Length:				1.5
+			( Channel Notes
+				( Note: G, 0, 0.20)
+				( Note: F, 0.25, 0.20)
+				( Note: G, 0.5, 0.20)
+				( Note: B, 0.75, 0.20)
+				( Note: G, 1, 0.20)
+				( Note: B, 1.25, 0.20)
+			)
+		)
+		
+		( Section				s32
+			Derives:			baseSection
+			Length:				6
+			( Channel Notes
+				( Note: F, 0, 0.20)
+				( Note: G, 0.25, 0.20)
+				( Note: F, 0.5, 0.20)
+				( Note: G, 0.75, 0.20)
+				( Note: B, 1, 0.20)
+				( Note: F, 1.25, 3.20)
+				( Note: G, 4.5, 0.20)
+			)
+		)
+		( Section				s33
+			Derives:			baseSection
+			Length:				1
+			( Channel Notes
+				( Note: G, 0, 0.2)
+				( Note: F, 0.25, 0.2)
+			)
+		)
+		
+		( Section				s34
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: G, 0, 0.2)
+				( Note: F, 0.25, 0.2)
+			)
+		)
+		
+		
+		( Section				s35
+			Derives:			baseSection
+			Length:				8
+			( Channel Notes
+			)
+		)
+		
+		( Section				s36
+			Derives:			baseSection
+			Length:				1.5
+			( Channel Notes
+				( Note: F, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+				( Note: B, 0.5, 0.2 )
+				( Note: G, 0.75, 0.2 )
+				( Note: B, 1, 0.2 )
+				( Note: G, 1.25, 0.2 )
+			)
+		)
+		
+		( Section				s37
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: F, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+			)
+		)
+		
+		( Section				s38
+			Derives:			baseSection
+			Length:				0.75
+			( Channel Notes
+				( Note: F, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+				( Note: B, 0.5, 0.2 )
+			)
+		)
+		
+		( Section				s39
+			Derives:			baseSection
+			Length:				1.5
+			( Channel Notes
+				( Note: B, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+				( Note: F, 0.5, 0.2 )
+				( Note: G, 0.75, 0.2 )
+				( Note: B, 1, 0.2 )
+				( Note: C4, 1.25, 0.2 )
+			)
+		)
+		
+		( Section				s40
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: B, 0, 0.2 )
+				( Note: F, 0.25, 0.2 )
+			)
+		)
+		
+		( Section				s41
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: B, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+			)
+		)
+		
+		( Section				s42
+			Derives:			baseSection
+			Length:				16
+			( Channel Notes
+				( Note: C4, 0, 4 )
+				( Note: B, 4, 4 )
+				( Note: A, 8, 4 )
+				( Note: C4, 12, 4 )
+			)
+		)
+		
+		( Section				s43
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: F4, 0, 0.2 )
+				( Note: E4, 0.25, 0.2 )
+				( Note: F4, 0.5, 0.2 )
+				( Note: E4, 0.75, 0.2 )
+				( Note: E4, 1, 0.4 )
+				( Note: E4, 1.5, 0.4 )
+				( Note: E4, 2.0, 0.4 )
+				( Note: F4, 2.5, 0.2 )
+				( Note: E4, 2.75, 0.2 )
+			)
+		)
+		( Section				s44
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: F4, 0, 0.4 )
+				( Note: E4, 0.5, 0.9 )
+				( Note: E4, 1.5, 0.4 )
+				( Note: C4, 2, 0.9 )
+			)
+		)
+		
+		( Section				s45
+			Derives:			baseSection
+			Length:				3
+			( Channel Notes
+				( Note: D4, 0, 0.9 )
+				( Note: D4, 1, 0.9 )
+				( Note: G, 2, 0.9 )
+			)
+		)
+		
+		( Section				s46
+			Derives:			baseSection
+			Length:				5
+			( Channel Notes
+				( Note: G, 0, 0.24)
+				( Note: D4, 0.25, 0.24)
+				( Note: E4, 0.5, 0.24)
+				( Note: D4, 0.75, 0.24)
+				( Note: G, 1.5, 0.4)
+				( Note: G, 2.5, 0.4)
+				( Note: G, 3.5, 0.4)
+				( Note: G, 4, 0.24)
+				( Note: D4, 4.25, 0.24)
+				( Note: E4, 4.5, 0.24)
+				( Note: D4, 4.75, 0.24)
+			)
+		)
+		
+		( Section				s47
+			Derives:			baseSection
+			Length:				1
+			( Channel Notes
+				( Note: D4, 0, 0.22)
+				( Note: E4, 0.25, 0.22)
+				( Note: D4, 0.5, 0.22 )
+			)
+		)
+		
+		( Section				s48
+			Derives:			baseSection
+			Length:				15
+			( Channel Notes
+				( Note: G, 0, 6 )
+				( Note: G, 6, 4 )
+				( Note: F, 10, 4 )
+				( Note: F, 14, 1 )
+			)
+		)
+		
+		( Section				s49
+			Derives:			baseSection
+			Length:				1.5
+			( Channel Notes
+				( Note: F, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+				( Note: Bb, 0.5, 0.2 )
+				( Note: G, 0.75, 0.2 )
+				( Note: Bb, 1, 0.2 )
+				( Note: G, 1.25, 0.2 )
+			)
+		)
+		
+		( Section				s50
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: F, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+			)
+		)
+		
+		( Section				s51
+			Derives:			baseSection
+			Length:				0.75
+			( Channel Notes
+				( Note: F, 0, 0.2 )
+				( Note: G, 0.25, 0.2 )
+				( Note: Bb, 0.5, 0.2 )
+			)
+		)
+		
+		( Section				s52
+			Derives:			baseSection
+			Length:				0.5
+			( Channel Notes
+				( Note: G, 0, 0.2 )
+				( Note: Bb, 0.25, 0.2 )
+			)
+		)
+		
+		
+		
+		( Section				s53a
+			Length:				0.5
+			Derives:			baseSection
+			RepeatUntil:		everyoneArrived
+			( Channel Notes
+				( Note: Bb, 0, 0.25 )
+				( Note: G, 0.25, 0.25 )
+			)
+		)
+		
+		( Section				s53b
+			Length:				0.5
+			( ActiveBehaviour	groupCrescendoDiminuendo )
+			RepeatUntil:		endPiece	
+			( Channel Notes
+				( Note: Bb, 0, 0.25 )
+				( Note: G, 0.25, 0.25 )
+			)
+		)
+	)
+	
+	( Section				baseSection
+		KeySignature:		C
+		//RepeatUntil:		(and decide( longEnough ) decide( followLocus )	)
+		
+	)
+	
+	( Section				breakSection
+		Length:				0.5
+		Repeat-Until:		wantToRejoin
+		Behaviour:			tacet
+		Action:				rejoin
+	)
+	
+	( Decision				longEnough
+							greater( numRepeats, 10 )
+	)
+	
+	( Decision				followLocus
+							greater( normal( minus( currentSection, currentLocus ), tightness ), 0.0 )
+	)
+	
+	( Decision				endPiece
+							greater( normal( 0.0, leavingTightness ), 0.0 )
+	)
+	
+	( Action				takeBreak
+		JumpTo:				breakSection
+	)
+	
+	( Action				addOffset
+		InsertSpaceAtEnd:	0.5 //beats
+	)
+	
+	( Decision				wantOffset
+							( or 
+								(and almostUnison wantUnison )
+								(and unison wantNotUniosn )
+								( feelLikeIt )
+							)
+	)
+	
+	( Decision				wantBreak
+							( or 	beenPlayingALongTime
+									textureTooDense
+									textureTooConstant )
+	)
+
+	( Behaviour				groupCrescendoDiminuendo
+							( true )
+		Activate:			groupCrescendo 
+		Activate:			groupDiminuendo
+		Activate:			groupMax
+		Activate:			groupMin
+	)
+	
+	( Behaviour				groupCrescendo 
+							moreThan( dynamicCurve, 0.0 )
+		Dynamics:			set( dynamic, add( averageDynamic, smallNoisyIncrement() ) )
+	)
+	
+	( Behaviour				groupDiminuendo 
+							lessThan( dynamicCurve, 0.0 )
+		Dynamics:			set( dynamic, add( averageDynamic, smallNoisyIncrement ) )
+		/*
+							if( increasing and maximum ) increasing = false
+							if( decreasing and minimum ) increasing = true */
+	)
+	
+	( Behaviour				followDynamics 
+							( true )
+		Dynamics:			set( dynamic,  averageDynamic)
+	)
+	
+	( Behaviour				varyDynamicRange 
+							dynamicsTooConstant
+		Dynamics:			set( dynamicContour, choose( crescendo, diminuendo ) )
+	)
+	( Behaviour				offsets wantOffset addOffset )
+	( Behaviour				breaks wantBreak takeBreak )
+	
+)	

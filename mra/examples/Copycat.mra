@@ -1,0 +1,10 @@
+( Piece						InC	
+	BPM:	127
+	TimeSignature:	"4,4"
+	Quantisation: 4.0
+	( Section	main
+		( Section				s0
+			Length:				20000.0
+		)
+	)
+)

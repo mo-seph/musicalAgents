@@ -1,0 +1,21 @@
+( Piece		test
+
+	(Section Main
+		( Section Chorus
+			Length:		2.0
+			( Channel Notes
+				( Note: E, 0, 1 )
+				( Note: E, 1, 1 )
+			)
+		)
+		
+		( Section bb
+			Length:		2.0
+			( Channel Notes
+				( Note: F, 0, 1 )
+				( Note: F, 1, 1 )
+			)
+		)
+	)
+)
+			

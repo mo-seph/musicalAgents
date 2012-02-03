@@ -1,0 +1,474 @@
+/**
+ * JavaCC file
+ */
+
+/*
+ * options { JDK_VERSION = "1.5"; }
+ */
+
+PARSER_BEGIN(MRAParser)
+package com.moseph.mra.parser;
+import com.moseph.mra.*;
+import com.moseph.mra.logic.*;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Vector;
+import java.util.List;
+
+public class MRAParser 
+{
+	boolean initialised = false;
+	static MRAFactory mraFactory;
+	
+	public static void main(String args[]) throws ParseException 
+	{
+		String filename = "examples/InC.mra";
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println( "Opening " + filename );
+		try
+		{
+			FileInputStream file = new FileInputStream( filename );
+			MRAParser parser = new MRAParser( file );
+			parser.runParser();
+			for( String input = ""; input != null; input = in.readLine() )
+			{
+				if( input.length() > 0 ) filename = "examples/" + input;
+				file = new FileInputStream( filename );
+				parser.ReInit( file );
+				parser.runParser();
+			}
+		}
+		catch( Exception e )
+		{
+			System.err.println( "Could not open file: " + e );
+		}
+	}
+	
+	public Piece runParser()
+	{
+		try 
+		{
+			return Piece(); 
+		}
+		catch (Exception e) {
+			System.out.println("NOK.");
+			System.out.println( e + "\n" + e.getMessage() );
+			e.printStackTrace();
+			// break;
+			// parser.ReInit(System.in);
+		} 
+		catch (Error e) {
+			System.out.println("Oops.");
+			System.out.println(e.getMessage());
+			// break;
+		}
+		return null;
+	}
+}
+PARSER_END(MRAParser)
+
+SKIP :
+{
+	" "
+	|	"\r"
+	|	"\t"
+	|	"\n"
+	|	<	"/*" ( ~["*"] | ( "*" ~["/"] ) )* "*/"			>
+	|	<	"//" ( ~["\n"] )* "\n">
+	
+}
+TOKEN : /* OPERATORS */
+{
+		< OPEN: "(" >
+	|	< CLOSE: ")" >
+	|	< ATT_SEP: ":" >
+	|	<OPEN_EXPR:	"{">
+	|	<CLOSE_EXPR:	"}">
+	|	<COMMA:	",">
+	|	<CONNECTIVE:	( <AND> | <OR> ) >
+	|	<NEGATION: ( "!" | "not" ) >
+	|	<AND:		( "+" | "and" ) >
+	|	<OR:		( "|" | "or" ) >
+	
+}
+TOKEN :
+{
+		<NUMBER:	( <DIGIT> )+ ( "." ( <DIGIT> ) + )? >
+	|	<LETTER:	[ "A"-"Z", "a"-"z" ]>
+	|	<DIGIT:		[ "0"-"9" ]>
+	|	<NAMECHAR:	( <LETTER> | <DIGIT> | "-" | "_" | "#" ) >		
+	|	<NAME:		( <LETTER> ) ( <NAMECHAR> )*		>
+	|	<PIECE_OPEN:	"(" ( " " | "\t" ) * "Piece" >
+	|	<SECTION_OPEN:	"(" ( " " | "\t" ) * "Section" >
+	|	<ACTION_OPEN:	"(" ( " " | "\t" ) * "Action" >
+	|	<BEHAVIOUR_OPEN:	"(" ( " " | "\t" ) * "Behaviour" >
+	|	<ACTIVEBEHAVIOUR_OPEN:	"(" ( " " | "\t" ) * "ActiveBehaviour" >
+	|	<DECISION_OPEN:	"(" ( " " | "\t" ) * "Decision" >
+	|	<CHANNEL_HEAD:	"(" ( " " | "\t" ) * "Channel" >
+	
+	|	<QUOTEDSTR:	( "'" (~["'"])* "'" ) | (  "\"" (~["\""])* "\"")	>
+	
+}
+
+void Input() : {}
+{
+	{System.out.println( "Input Starting" ); }
+	Piece() <EOF>
+	{System.out.println( "Input Finished" ); }
+}
+
+
+Piece Piece() : 
+{
+	Token name;
+	Piece p;
+	Attribute a;
+	Behaviour d;
+	Behaviour aa;
+	Action act;
+	Section s;
+	Decision dec;
+}
+{
+	
+	<PIECE_OPEN> name = <NAME>
+	{//System.out.println( "Starting section " + name );
+		mraFactory = new MRAFactory( name.image );
+		p = mraFactory.getPiece();
+	}
+	( 
+		LOOKAHEAD(2) s = Section()
+		{ p.addChild( s ); }
+		|
+/*
+		LOOKAHEAD(2) c= Channel() 
+		{ p.addChannel( c ); }
+		|*/ 
+		aa = Behaviour() 
+		{ p.addBehaviour( aa ); }
+		| 
+		act = Action()
+		{ p.addAction( act ); }
+		|
+		dec = Decision()
+		{ p.addDecision( dec ); }
+		|
+		a = Attribute()  
+		{ p.addAttribute( a ); }
+		)*
+	<CLOSE>
+	{return p;}
+	
+}
+
+Section Section() : 
+{
+	Token name;
+	Section s;
+	Section sc;
+	Attribute a;
+	Behaviour d;
+	Behaviour aa;
+	Channel c;
+}
+{
+	
+	<SECTION_OPEN> name = <NAME>
+	(
+			//Not really a lookahead, just stopping the compiler bitching
+		LOOKAHEAD(2)
+		( <CLOSE> { s = mraFactory.getSection( name.image ); } )
+		|
+		(
+			{//System.out.println( "Starting section " + name );
+				s = mraFactory.createSection( name.image );
+			}
+			( 
+				aa = Behaviour() 
+				{ s.addBehaviour( aa ); }
+				| 
+				d = ActiveBehaviour() 
+				{ s.addBehaviour( d ); }
+				| 
+				a = Attribute()  
+				{ s.addAttribute( a ); }
+			)* 
+			(LOOKAHEAD(2) 
+				( 
+					c= Channel() { s.addChannel( c ); }
+				)+
+				| 
+				(
+					sc = Section() { s.addChild( sc ); }
+				)+
+			)?
+			<CLOSE>
+		)
+	)
+	{//System.out.println( "Ending Section" + name);
+	return s;}
+}
+
+Behaviour ActiveBehaviour() :
+{
+	Token name;
+}
+{
+	<ACTIVEBEHAVIOUR_OPEN> name = <NAME> <CLOSE>
+	{ return mraFactory.getBehaviour( name.image ); }
+	
+
+}
+
+Decision Decision() :
+{
+	Token name;
+	ExpressionTerm e;
+}
+{
+	<DECISION_OPEN> name = <NAME> ( e = Expression() | e = Term() )
+	<CLOSE>
+	{ return mraFactory.createDecision( name.image, e ); }
+}
+
+Action Action() :
+{
+	Token name;
+	Attribute a;
+}
+{
+	<ACTION_OPEN> name = <NAME>
+	{ Action act = mraFactory.createAction( name.image ); }
+	( a=Attribute() { act.addAttribute( a ) ;} ) +
+	<CLOSE>
+	{ return act; }
+}
+
+Behaviour Behaviour() :
+{
+	Token name;
+	Decision decision = null;
+	Token decisionName;
+	ExpressionTerm exp = null;
+	Action action;
+	Attribute a;
+	Token actionName;
+}
+{
+	<BEHAVIOUR_OPEN> name = <NAME>
+	//Can either have the name of a decision, or an expression to evaluate
+	(
+			exp = Expression()
+			|
+			LOOKAHEAD(2)
+			exp = Function()
+			|
+			decisionName = <NAME>
+			{ decision = mraFactory.getDecision( decisionName.image );}
+	)
+	//Can either have the name of an action, or the list of attributes
+	(
+			LOOKAHEAD(2)
+			{ action = mraFactory.createAction( "_" + name.image ); }
+			( a=Attribute() { action.addAttribute( a );} )+
+			|
+			actionName = <NAME>
+			{ action = mraFactory.getAction( actionName.image ); }
+	)
+	<CLOSE>
+	{ 
+		//System.err.println( name + ", " + decision + ", " + exp );
+		
+		if( decision != null) return mraFactory.createBehaviour( name.image, action, decision );
+		return mraFactory.createBehaviour( name.image, action, exp ); 
+	}
+}
+
+Attribute Attribute() :
+{
+	Token name;
+	Object val;
+}
+{
+	name = <NAME> <ATT_SEP> ( LOOKAHEAD(2) val = Function() | val = Expression() | val = StringTerm() )
+	{return new Attribute( name.image, val ); }
+}
+
+Channel Channel() :
+{
+	Token name;
+	Channel c;
+	Attribute a;
+	TemporalEvent e;
+}
+{
+	<CHANNEL_HEAD> name = <NAME>
+	{// System.out.println( "Channel: " + name );
+		c = mraFactory.createChannel( name.image ); }
+	( 
+		a=Attribute()
+		{ c.addAttribute( a ); } 
+		| 
+		e=TemporalEvent() 
+		{ c.addEvent( e ); }
+	) *
+	<CLOSE>
+	{ //System.out.println( "Close Channel" );
+		return c; }
+}
+
+Unit Unit() :
+{
+	Token type;
+	Unit unit;
+	Vector<String> params;
+	Attribute att;
+}
+{
+	<OPEN> type = <NAME>
+	{ //System.out.println( "Unit: " + type );
+		unit = mraFactory.createTypedUnit( type.image );}
+	( 
+		<ATT_SEP> params = ParameterList() 
+		{ unit.setAttributes( params ); }
+		|
+		/*( Attribute() | Unit() ) **/
+		( att = Attribute() { unit.addAttribute( att ); } ) *
+	)
+	
+	<CLOSE>
+	{ return unit;}
+}
+
+TemporalEvent TemporalEvent() :
+{
+	Token type;
+	TemporalEvent event;
+	Vector<String> params;
+	Attribute att;
+}
+{
+	<OPEN> type = <NAME>
+	{ //System.out.println( "Temporal Event: " + type );
+			event = mraFactory.createTemporalEvent( type.image );}
+	
+	( 
+		<ATT_SEP> params = ParameterList() 
+		{ event.setAttributes( params ); }
+		|
+		( att = Attribute() { event.addAttribute( att ); } ) *
+	)
+	
+	<CLOSE>
+	{ return event;}
+}
+
+ExpressionTerm Expression() :
+{
+	ExpressionTerm ret=null;
+
+}
+{
+	<OPEN>
+	(
+		ret = ConnectedExpressions()
+		|
+		ret = NegatedExpression()
+		|
+		ret = Expression()
+		|
+		ret = Term()
+	)
+	<CLOSE>
+	{ return ret; }
+	
+}
+
+ExpressionTerm ConnectedExpressions() :
+{
+	Token connective;
+	List<ExpressionTerm> args = new Vector<ExpressionTerm>();
+	ExpressionTerm term;
+}
+{		
+	{//System.out.println( "Connective!" );
+	}
+	connective=<CONNECTIVE> ( term = Expression() | term = Term() ) { args.add( term ); } 
+	( ( term = Expression() | term = Term() ) { args.add(term);} )+
+	{ 
+		return mraFactory.createConnective( connective.image, args );
+	}
+}
+
+ExpressionTerm NegatedExpression() :
+{
+	ExpressionTerm ex;
+}
+{
+	<NEGATION> ( ex = Expression() | ex = Term() )
+	{ return mraFactory.createNegatedExpression( ex ); }
+}
+
+Function Function() :
+{
+	Vector<ExpressionTerm> params = new Vector<ExpressionTerm>();
+	String func;
+	Token name;
+}
+{
+	name=<NAME> <OPEN> [ params = FunctionParameters() ] <CLOSE>
+	{return  mraFactory.createFunction( name.image, params );}
+}
+
+Vector<ExpressionTerm> FunctionParameters() :
+{
+	ExpressionTerm term;
+	Vector<ExpressionTerm> atts = new Vector<ExpressionTerm>();
+}
+{
+	term=Term() {atts.add(term);} 
+	(<COMMA> term=Term() { atts.add(term);} )*
+	{ return atts; }
+}
+Vector<String> ParameterList() :
+{
+	String term;
+	Vector<String> atts = new Vector<String>();
+}
+{
+	term=StringTerm() {atts.add(term);} 
+	(<COMMA> term=StringTerm() { atts.add(term);} )*
+	{ return atts; }
+}
+
+String StringTerm() : 
+{
+	Token val;
+}
+{
+		( ( val = <QUOTEDSTR> | val = <NUMBER> | val = <NAME> | val = <LETTER> )
+		{ 
+			String s = val.image;
+			if( s.startsWith( "\"" ) && s.endsWith( "\"" ) )
+			{
+				s = s.substring( 1, s.length() - 1 );
+			}
+			return s;
+		} )
+}
+
+ExpressionTerm Term() : 
+{
+	String val;
+	Function fun;
+}
+{
+	(
+		LOOKAHEAD(2) fun = Function()
+		{ return fun; }
+		|
+		( val = StringTerm()
+		{ return mraFactory.getTerm( val ); } )
+	)
+}

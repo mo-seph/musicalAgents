@@ -1,0 +1,43 @@
+; Thu Jan 26 14:10:43 GMT 2006
+; 
+;+ (version "3.1")
+;+ (build "Build 214")
+
+([Channel] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Fragment] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Path] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Piece] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Play] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([project+annotation] of  %3APROJECT-ANNOTATION
+
+	(%3ALOCATION "/amd/nfs/wyvern/disk/ptn138/s0239182/workspace/mra/src")
+	(%3AONTOLOGYNAME "MRA")
+	(%3APACKAGE "com.moseph.mra")
+	(%3ASUPPORT "j2se"))
+
+([Section] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([SpanContainer] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Unit] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))

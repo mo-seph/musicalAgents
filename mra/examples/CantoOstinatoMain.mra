@@ -1,0 +1,95 @@
+( Piece						InC	
+	BPM:	127
+	TimeSignature:	"2,2"
+	Quantisation:		5.0
+	( Section	main
+	/*
+		( Section				s0
+			Length:				2.0
+			Repeats:			8
+			( Channel NotesLH
+				( Note: Bb1, 0.0, 0.2)
+				( Note: F2, 0.2, 0.2)
+				( Note: Db3, 0.4, 0.2)
+				( Note: Bb2, 0.6, 0.2)
+				( Note: F2, 0.8, 0.2)
+				( Note: Ab1, 1.0, 0.2)
+				( Note: Eb2, 1.2, 0.2)
+				( Note: C3, 1.4, 0.2)
+				( Note: Ab2, 1.6, 0.2)
+				( Note: Eb2, 1.8, 0.2)
+			)
+		)
+		( Section				s1
+			Length:				2.0
+			Repeats:			17	
+			( Channel NotesLH
+				( Note: Bb1, 0.0, 0.2)
+				( Note: F2, 0.2, 0.2)
+				( Note: Db3, 0.4, 0.2)
+				( Note: Bb2, 0.6, 0.2)
+				( Note: F2, 0.8, 0.2)
+				( Note: Ab1, 1.0, 0.2)
+				( Note: Eb2, 1.2, 0.2)
+				( Note: C3, 1.4, 0.2)
+				( Note: Ab2, 1.6, 0.2)
+				( Note: Eb2, 1.8, 0.2)
+			)
+			( Channel NotesRH
+				( Note: A3, 0.0, 1.0)
+				( Note: A3, 1.0, 1.0)
+			)
+		)
+		*/
+		( Section				s2
+			Length:				2
+			Repeats:			31
+			( Channel NotesLH
+				( Note: Bb1, 0.0, 0.2)
+				( Note: F2, 0.2, 0.2)
+				( Note: Db3, 0.4, 0.2)
+				( Note: Bb2, 0.6, 0.2)
+				( Note: F2, 0.8, 0.2)
+				( Note: Ab1, 1.0, 0.2)
+				( Note: Eb2, 1.2, 0.2)
+				( Note: C3, 1.4, 0.2)
+				( Note: Ab2, 1.6, 0.2)
+				( Note: Eb2, 1.8, 0.2)
+			)
+			( Channel NotesRH
+				( Note: A3, 0.0, 0.6)
+				( Note: A3, 0.6, 0.4)
+				( Note: A3, 1.0, 0.6)
+				( Note: A3, 1.6, 0.4)
+			)
+		)
+		( Section				s3
+			Length:				2
+			Repeats:			8
+			( Channel NotesLH
+				( Note: Bb1, 0.0, 0.2)
+				( Note: F2, 0.2, 0.2)
+				( Note: Db3, 0.4, 0.2)
+				( Note: Bb2, 0.6, 0.2)
+				( Note: F2, 0.8, 0.2)
+				( Note: Ab1, 1.0, 0.2)
+				( Note: Eb2, 1.2, 0.2)
+				( Note: C3, 1.4, 0.2)
+				( Note: Ab2, 1.6, 0.2)
+				( Note: Eb2, 1.8, 0.2)
+			)
+			( Channel NotesRH
+				( Note: A3, 0.0, 0.2)
+				( Note: Db3, 0.2, 0.2)
+				( Note: F3, 0.4, 0.2)
+				( Note: A3, 0.6, 0.2)
+				( Note: F3, 0.8, 0.2)
+				( Note: A3, 1.0, 0.2)
+				( Note: Eb3, 1.2, 0.2)
+				( Note: Ab3, 1.4, 0.2)
+				( Note: A3, 1.6, 0.2)
+				( Note: Ab3, 1.8, 0.2)
+			)
+		)
+	)
+)	
